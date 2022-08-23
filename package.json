@@ -1,5 +1,5 @@
 {
-  "name": "react-modele",
+  "name": "blog-react-router",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
@@ -52,5 +52,10 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  }
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:antoineflg35/blog-react.git",
+  "author": "antoineflg35 <antoineflegeau35@gmail.com>",
+  "license": "MIT"
 }

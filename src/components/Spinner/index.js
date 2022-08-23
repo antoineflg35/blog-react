@@ -2,7 +2,9 @@
 import './styles.scss';
 
 // == Composant
-const Spinner = () => <div className="spinner" />;
+function Spinner() {
+  return <div className="spinner" />;
+}
 
 // == Export
 export default Spinner;
