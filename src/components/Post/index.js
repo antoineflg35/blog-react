@@ -18,5 +18,4 @@ Post.propTypes = {
   excerpt: PropTypes.string.isRequired,
 };
 
-
 export default Post;

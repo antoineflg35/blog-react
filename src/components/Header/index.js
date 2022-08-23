@@ -1,7 +1,10 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
 
-function Header({ categories }) {
+function Header({ categories, zenMode, toggleZenMode }) {
+  function handleClick() {
+    toggleZenMode();
+  }
   return (
     <header className="menu">
       <nav>
@@ -10,7 +13,9 @@ function Header({ categories }) {
             (category) => <a className="menu-link" key={category.label} href={category.route}>{category.label}</a>,
           )
         }
-        <button className="menu-btn" type="button">Activer le mode zen</button>
+        <button className="menu-btn" type="button" onClick={handleClick}>
+          {zenMode ? 'Désactiver le zen mode' : 'Activer le zen mode' }
+        </button>
       </nav>
     </header>
   );
@@ -23,6 +28,8 @@ Header.propTypes = {
       label: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  zenMode: PropTypes.bool.isRequired,
+  toggleZenMode: PropTypes.func.isRequired,
 };
 
 export default Header;

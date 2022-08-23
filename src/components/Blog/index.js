@@ -1,4 +1,6 @@
+import { useState } from 'react';
 // Composants
+
 import Header from 'src/components/Header';
 import Posts from 'src/components/Posts';
 import Footer from 'src/components/Footer';
@@ -10,12 +12,17 @@ import './styles.scss';
 
 // == Composant
 function Blog() {
-  console.log(categoriesData);
-  console.log(postsData);
+  const [zenMode, setZenMode] = useState(false);
+
+  function toggleZenMode() {
+    setZenMode(!zenMode);
+  }
+
+  const className = zenMode ? 'blog blog--zen' : 'blog';
 
   return (
-    <div className="blog">
-      <Header categories={categoriesData} />
+    <div className={className}>
+      <Header categories={categoriesData} zenMode={zenMode} toggleZenMode={toggleZenMode} />
       <Posts posts={postsData} />
       <Footer />
     </div>
