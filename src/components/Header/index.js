@@ -2,9 +2,6 @@ import './styles.scss';
 import PropTypes from 'prop-types';
 
 function Header({ categories, zenMode, toggleZenMode }) {
-  function handleClick() {
-    toggleZenMode();
-  }
   return (
     <header className="menu">
       <nav>
@@ -13,7 +10,7 @@ function Header({ categories, zenMode, toggleZenMode }) {
             (category) => <a className="menu-link" key={category.label} href={category.route}>{category.label}</a>,
           )
         }
-        <button className="menu-btn" type="button" onClick={handleClick}>
+        <button className="menu-btn" type="button" onClick={toggleZenMode}>
           {zenMode ? 'Désactiver le zen mode' : 'Activer le zen mode' }
         </button>
       </nav>
