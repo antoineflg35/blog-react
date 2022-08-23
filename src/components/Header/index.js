@@ -1,5 +1,6 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function Header({ categories, zenMode, toggleZenMode }) {
   return (
@@ -7,7 +8,7 @@ function Header({ categories, zenMode, toggleZenMode }) {
       <nav>
         {
           categories.map(
-            (category) => <a className="menu-link" key={category.label} href={category.route}>{category.label}</a>,
+            (category) => <Link to={category.route} className="menu-link" key={category.label}>{category.label}</Link>,
           )
         }
         <button className="menu-btn" type="button" onClick={toggleZenMode}>
