@@ -1,13 +1,22 @@
 import './styles.scss';
 
-function Post() {
+import PropTypes from 'prop-types';
+
+function Post({ title, category, excerpt }) {
   return (
     <article className="post">
-      <h2 className="post-title">Titre du post</h2>
-      <div className="post-category">tag</div>
-      <p className="post-excerpt">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed mollitia ad incidunt cum sunt voluptatum, fuga quos vero aliquid veniam.</p>
+      <h2 className="post-title">{ title }</h2>
+      <div className="post-category">{ category }</div>
+      <p className="post-excerpt">{ excerpt }</p>
     </article>
   );
 }
+
+Post.propTypes = {
+  title: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  excerpt: PropTypes.string.isRequired,
+};
+
 
 export default Post;
