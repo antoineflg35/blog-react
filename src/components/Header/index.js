@@ -1,19 +1,49 @@
-import './styles.scss';
+import { NavLink } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+
+import './styles.scss';
 
 function Header({ categories, zenMode, toggleZenMode }) {
+  function handleClick() {
+    console.log('ça clique !');
+    toggleZenMode();
+  }
+
+  const buttonText = zenMode ? 'Désactiver le mode zen' : 'Activer le mode zen';
+
   return (
     <header className="menu">
       <nav>
         {
           categories.map(
-            (category) => <Link to={category.route} className="menu-link" key={category.label}>{category.label}</Link>,
+            (category) => (
+              <NavLink
+                to={category.route}
+                key={category.label}
+                className={
+                  ({ isActive }) => {
+                    if (isActive) {
+                      return 'menu-link menu-link--selected';
+                    }
+
+                    return 'menu-link';
+                  }
+                }
+              >
+                {category.label}
+              </NavLink>
+            ),
           )
         }
-        <button className="menu-btn" type="button" onClick={toggleZenMode}>
-          {zenMode ? 'Désactiver le zen mode' : 'Activer le zen mode' }
+        <button
+          className="menu-btn"
+          type="button"
+          onClick={handleClick}
+        >
+          {buttonText}
         </button>
+
       </nav>
     </header>
   );
