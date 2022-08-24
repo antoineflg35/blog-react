@@ -3,11 +3,15 @@ import './styles.scss';
 import PropTypes from 'prop-types';
 
 function Post({ title, category, excerpt }) {
+  function createMarkup() {
+    return { __html: excerpt };
+  }
+
   return (
     <article className="post">
-      <h2 className="post-title">{ title }</h2>
-      <div className="post-category">{ category }</div>
-      <p className="post-excerpt">{ excerpt }</p>
+      <h2 className="post-title">{title}</h2>
+      <div className="post-category">{category}</div>
+      <p className="post-excerpt" dangerouslySetInnerHTML={createMarkup()} />
     </article>
   );
 }

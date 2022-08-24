@@ -4,10 +4,11 @@ import Post from 'src/components/Post';
 
 import './styles.scss';
 
-function Posts({ posts }) {
+function Posts({ posts, category }) {
   return (
     <main className="posts">
       <h1 className="posts-title">Dev Of Thrones</h1>
+      <h2 className="posts-title-category">{category}</h2>
       <div className="posts-list">
         {
           posts.map(
@@ -25,6 +26,7 @@ Posts.propTypes = {
       id: PropTypes.number.isRequired,
     }),
   ).isRequired,
+  category: PropTypes.string.isRequired,
 };
 
 export default Posts;

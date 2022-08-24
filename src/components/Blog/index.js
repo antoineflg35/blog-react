@@ -53,7 +53,7 @@ function Blog() {
     loadPosts,
     [],
   );
-  
+
   return (
     <div className={className}>
       <Header
@@ -62,8 +62,6 @@ function Blog() {
         toggleZenMode={toggleZenMode}
       />
       { loading && <Spinner /> }
-
-      <button onClick={loadPosts}>Charger les posts</button>
 
       { !loading
       && (
@@ -74,7 +72,7 @@ function Blog() {
               <Route
                 key={categorie.label}
                 path={categorie.route}
-                element={<Posts posts={filterPostsByCategory(posts, categorie.label)} />}
+                element={<Posts posts={filterPostsByCategory(posts, categorie.label)} category={categorie.label} />}
               />
             ),
           )
