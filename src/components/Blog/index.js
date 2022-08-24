@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import { Routes, Route, Navigate } from 'react-router-dom';
-import axios from 'axios';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import filterPostsByCategory from 'src/components/selectors/filterPostsByCategory';
 
@@ -13,19 +12,18 @@ import Single from 'src/components/Single';
 import Footer from 'src/components/Footer';
 import NotFound from 'src/components/NotFound';
 import Spinner from 'src/components/Spinner';
+import useApiData from 'src/Hooks/useApiData';
 
 // data, styles et utilitaires
 import categoriesData from 'src/data/categories';
-import postsData from 'src/data/posts';
 import './styles.scss';
 
 // == Composant
 function Blog() {
+  const [loading, posts] = useApiData('https://oclock-open-apis.vercel.app/api/blog/posts');
+  
+
   const [zenMode, setZenMode] = useState(false);
-
-  const [posts, setPosts] = useState([]);
-
-  const [loading, setLoading] = useState(true);
 
   function toggleZenMode() {
     setZenMode(!zenMode);
@@ -33,27 +31,7 @@ function Blog() {
     console.log('zenMode', zenMode);
   }
 
-  function loadPosts() {
-    setLoading(true);
-    axios
-      .get('https://oclock-open-apis.vercel.app/api/blog/posts')
-      // quand la promesse est tenue (que l'api nous a répondu et fourni les données)
-      .then((response) => {
-        setPosts(response.data);
-      })
-      .catch(() => {
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-
   const className = zenMode ? 'blog blog--zen' : 'blog';
-
-  useEffect(
-    loadPosts,
-    [],
-  );
 
   return (
     <div className={className}>
