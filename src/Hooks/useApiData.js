@@ -1,18 +1,17 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 function useApiData(url) {
-  const [posts, setPosts] = useState([]);
+  const [items, setItems] = useState([]);
 
   const [loading, setLoading] = useState(true);
 
-  function loadPosts() {
+  function loadItems() {
     setLoading(true);
-    console.log('1 - avant l\'appel');
     axios
       .get(url)
       .then((response) => {
-        setPosts(response.data);
+        setItems(response.data);
       })
       .catch(() => {
         console.log('une erreur est survenue...');
@@ -20,16 +19,14 @@ function useApiData(url) {
       .finally(() => {
         setLoading(false);
       });
-
-    console.log('2 - après l\'appel');
   }
 
   useEffect(
-    loadPosts,
+    loadItems,
     [],
   );
 
-  return [loading, posts];
+  return [loading, items];
 }
 
 export default useApiData;
