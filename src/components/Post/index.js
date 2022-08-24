@@ -1,10 +1,14 @@
-import './styles.scss';
-
 import PropTypes from 'prop-types';
+import DOMPurify from 'dompurify';
+
+import './styles.scss';
 
 function Post({ title, category, excerpt }) {
   function createMarkup() {
-    return { __html: excerpt };
+    // je prends soin de nettoyer le html potentiellement
+    // dangeureux avant de le faire interpréter par le navigateur
+    const sanitizedExcerpt = DOMPurify.sanitize(excerpt, { ALLOWED_TAGS: ['em', 'strong'] });
+    return { __html: sanitizedExcerpt };
   }
 
   return (
