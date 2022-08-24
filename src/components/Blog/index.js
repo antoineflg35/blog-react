@@ -9,6 +9,7 @@ import filterPostsByCategory from 'src/components/selectors/filterPostsByCategor
 // Composants
 import Header from 'src/components/Header';
 import Posts from 'src/components/Posts';
+import Single from 'src/components/Single';
 import Footer from 'src/components/Footer';
 import NotFound from 'src/components/NotFound';
 import Spinner from 'src/components/Spinner';
@@ -24,7 +25,7 @@ function Blog() {
 
   const [posts, setPosts] = useState([]);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   function toggleZenMode() {
     setZenMode(!zenMode);
@@ -77,6 +78,10 @@ function Blog() {
             ),
           )
         }
+        <Route
+          path="/post/:slug"
+          element={<Single posts={posts} />}
+        />
         <Route path="jquery" element={<Navigate to="/autre" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

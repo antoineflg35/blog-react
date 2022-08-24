@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 
 import Post from 'src/components/Post';
+import useTitle from '../../Hooks/useTitle';
 
 import './styles.scss';
 
 function Posts({ posts, category }) {
+  useTitle(`${category}`);
   return (
     <main className="posts">
       <h1 className="posts-title">Dev Of Thrones</h1>
